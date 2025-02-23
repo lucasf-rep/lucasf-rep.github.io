@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Language Learning Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="profile-sidebar">
+        <div class="profile-header">
+            <div class="profile-avatar">L</div>
+            <h3>Learner</h3>
+        </div>
+        <div class="profile-stats">
+            <div class="stat">
+                <div class="stat-label">Total XP</div>
+                <div class="stat-value">0</div>
+            </div>
+        </div>
+        <div class="profile-skills">
+            <h4>Skills</h4>
+            <div class="skill-item">
+                <div class="skill-info">
+                    <span class="skill-name">Arabic Script</span>
+                    <span class="skill-level">Level 1</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" data-skill="arabic" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-info">
+                    <span class="skill-name">Cyrillic Script</span>
+                    <span class="skill-level">Level 1</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" data-skill="cyrillic" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1>Choose Your Script</h1>
+        <div class="script-grid">
+            <button class="script-button" data-script="arabic">
+                <span class="script-emoji">🌙</span>
+                <span class="script-name">Arabic Script</span>
+                <span class="script-description">Learn the Arabic alphabet</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="scripts/playerProfile.js" defer></script>
+    <script src="scripts/game.js" defer></script>
+</body>
+</html> 
