@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalim - Language Learning Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/kalim.css">
+</head>
+<body>
+    <div class="profile-sidebar">
+        <!-- Same sidebar as codex.html -->
+        <div class="profile-header">
+            <div class="profile-avatar">L</div>
+            <h3>Learner</h3>
+        </div>
+        <div class="profile-stats">
+            <div class="stat">
+                <div class="stat-label">Total XP</div>
+                <div class="stat-value">0</div>
+            </div>
+        </div>
+        <div class="profile-skills">
+            <h4>Skills</h4>
+            <div class="skill-item">
+                <div class="skill-info">
+                    <span class="skill-name">Farsi Words</span>
+                    <span class="skill-level">Level 1</span>
+                </div>
+                <div class="skill-progress">
+                    <div class="skill-progress-bar" data-skill="farsi-words" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="game-header">
+            <h1>Kalim</h1>
+            <a href="index.html" class="back-button">← Back to Hub</a>
+        </div>
+        
+        <div class="kalim-game">
+            <div class="game-board">
+                <!-- 6 rows for attempts -->
+                <div class="word-row">
+                    <div class="letter-cell"></div>
+                    <div class="letter-cell"></div>
+                    <div class="letter-cell"></div>
+                    <div class="letter-cell"></div>
+                    <div class="letter-cell"></div>
+                </div>
+                <!-- Repeat word-row div 5 more times -->
+            </div>
+            
+            <div class="kalim-keyboard">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/playerProfile.js" defer></script>
+    <script src="scripts/kalimGame.js" defer></script>
+</body>
+</html> 

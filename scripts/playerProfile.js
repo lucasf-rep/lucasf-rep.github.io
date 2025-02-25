@@ -6,20 +6,31 @@ class PlayerProfile {
 
     loadProfile() {
         const savedProfile = localStorage.getItem('playerProfile');
-        this.profile = savedProfile ? JSON.parse(savedProfile) : {
-            name: 'Learner',
-            totalXP: 0,
-            skills: {
-                arabic: {
+        if (savedProfile) {
+            this.profile = JSON.parse(savedProfile);
+            // Ensure farsi-words skill exists in loaded profile
+            if (!this.profile.skills['farsi-words']) {
+                this.profile.skills['farsi-words'] = {
                     level: 1,
                     xp: 0
-                },
-                cyrillic: {
-                    level: 1,
-                    xp: 0
-                }
+                };
             }
-        };
+        } else {
+            this.profile = {
+                name: 'Learner',
+                totalXP: 0,
+                skills: {
+                    arabic: {
+                        level: 1,
+                        xp: 0
+                    },
+                    'farsi-words': {
+                        level: 1,
+                        xp: 0
+                    }
+                }
+            };
+        }
     }
 
     getXPRequiredForLevel(level) {
@@ -62,20 +73,30 @@ class PlayerProfile {
             nameElement.textContent = this.profile.name;
         }
 
-        const xpElement = document.querySelector('.stat-value');
-        if (xpElement) {
-            xpElement.textContent = this.profile.totalXP;
-        }
+        // Update total XP
+        const totalXPElements = document.querySelectorAll('.stat-value');
+        totalXPElements.forEach(el => {
+            el.textContent = this.profile.totalXP;
+        });
 
-        Object.entries(this.profile.skills).forEach(([skillName, skillData]) => {
-            const progressBar = document.querySelector(`.skill-progress-bar[data-skill="${skillName}"]`);
-            const levelElement = progressBar?.parentElement?.previousElementSibling?.querySelector('.skill-level');
-            
-            if (progressBar && levelElement) {
-                const requiredXP = this.getXPRequiredForLevel(skillData.level);
-                const xpProgress = (skillData.xp / requiredXP) * 100;
-                progressBar.style.width = `${xpProgress}%`;
-                levelElement.textContent = `Level ${skillData.level}`;
+        // Update each skill's progress
+        const skillBars = document.querySelectorAll('.skill-progress-bar');
+        skillBars.forEach(bar => {
+            const skillName = bar.dataset.skill;
+            if (this.profile.skills[skillName]) {
+                const skill = this.profile.skills[skillName];
+                const requiredXP = this.getXPRequiredForLevel(skill.level);
+                const progress = (skill.xp / requiredXP) * 100;
+                bar.style.width = `${progress}%`;
+                
+                // Update level display
+                const skillItem = bar.closest('.skill-item');
+                if (skillItem) {
+                    const levelElement = skillItem.querySelector('.skill-level');
+                    if (levelElement) {
+                        levelElement.textContent = `Level ${skill.level}`;
+                    }
+                }
             }
         });
     }
